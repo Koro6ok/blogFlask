@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+{% block title %}
+<title>Homepage</title>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row card-group" >
+        <div class="col-sm-12">
+            <div class="row">
+                {% if session.get('user') %}
+                    {% for article in articles %}
+                        {% if article.location == session.get('user').get('location') %}
+                            {% include 'blog/shared/article.html' %}
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
